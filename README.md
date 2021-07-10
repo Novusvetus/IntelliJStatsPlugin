@@ -14,11 +14,29 @@
 - [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
 
 <!-- Plugin description -->
-This Fancy IntelliJ Platform Plugin is going to be your implementation of the brilliant ideas that you have.
+This plugin logs what you are working on and sends it to an API. But you still have to set up the endpoint yourself and set it under "Tools" -> "IntelliJStatsPlugin Settings".
 
-This specific section is a source for the [plugin.xml](/src/main/resources/META-INF/plugin.xml) file which will be extracted by the [Gradle](/build.gradle.kts) during the build process.
+It will post a JSON array with the following structure and expects a "success" as answer.
 
-To keep everything working, do not remove `<!-- ... -->` sections. 
+```
+[
+  {
+    "entity":"/path/to/file",
+    "timestamp":1234567890.1234,
+    "is_write":false,
+    "project":"Projectname",
+    "language":"PLAIN_TEXT"
+  },
+  {
+    "entity":"/path/to/file.md",
+    "timestamp":1234567890.9876,
+    "is_write":false,
+    "project":"Projectname",
+    "language":"Markdown"
+  },
+  ...
+]
+```
 <!-- Plugin description end -->
 
 ## Installation

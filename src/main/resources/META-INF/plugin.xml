@@ -1,19 +1,28 @@
 <idea-plugin>
     <id>com.github.novusvetus.intellijstatsplugin</id>
     <name>IntelliJStatsPlugin</name>
+    <version>0.0.1</version>
     <vendor>novusvetus</vendor>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+
+    <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.novusvetus.intellijstatsplugin.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.novusvetus.intellijstatsplugin.services.MyProjectService"/>
     </extensions>
 
-    <applicationListeners>
-        <listener class="com.github.novusvetus.intellijstatsplugin.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
+    <application-components>
+        <component>
+            <implementation-class>com.github.novusvetus.intellijstatsplugin.IntelliJStatsPlugin</implementation-class>
+        </component>
+    </application-components>
+
+    <actions>
+        <action id="pluginMenu" class="com.github.novusvetus.intellijstatsplugin.PluginMenu" text="IntelliJStatsPlugin">
+            <add-to-group group-id="ToolsMenu" anchor="first" />
+        </action>
+    </actions>
+
 </idea-plugin>
